@@ -1,0 +1,63 @@
+
+
+{{#each person}}
+<h1>Name</h1>
+<form>
+	<input type='text' name='{{name}}'  value='{{name}}'/>
+</form>
+<h1>Gender</h1>
+<form>
+	<input type='text' name='{{name}}'  value='{{name}}'/>
+</form>
+<h1>Age</h1>
+<form>
+	<input type='text' name='{{name}}'  value='{{name}}'/>
+</form>
+<h1>Sign</h1>
+<form>
+	<input type='text' name='{{name}}'  value='{{name}}'/>
+</form>
+<h1>Photo</h1>
+<form>
+	<input type='text' name='{{name}}'  value='{{name}}'/>
+</form>
+{{/each}}
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Submit</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Welcome to Alchemy!!</p>
+    <!-- <button id="myBtn">Continue</button> -->
+    <a href="/second"><button>Continue</button></a>
+
+  </div>
+
+<script>
+var modal = document.getElementById('myModal');
+
+var btn = document.getElementById("myBtn");
+
+var span = document.getElementsByClassName("close")[0]; 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+	
