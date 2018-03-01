@@ -18,3 +18,5 @@ WHERE sign=aquarius AND possibleMatch in{"aries", "leo", "sagittarius", "gemini"
 WHERE sign=cancer AND possibleMatch in{"taurus", "virgo", "capricorn", "cancer", "scorpio", "pisces"},
 WHERE sign=scorpio AND possibleMatch in{"taurus", "virgo", "capricorn", "cancer", "scorpio", "pisces"},
 WHERE sign=pisces AND possibleMatch in{"taurus", "capricorn", "cancer", "scorpio", "pisces"};
+
+
