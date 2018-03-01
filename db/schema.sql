@@ -10,6 +10,7 @@ CREATE TABLE alchemy_table (
     age INT (500) NOT NULL,
 	sign varchar (400) NOT NULL,
     photo url (500) NOT NULL,
+	possibleMatch varchar (500) NOT NULL,
 	PRIMARY KEY (id)
 );
 
