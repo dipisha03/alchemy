@@ -1,18 +1,19 @@
+// =================== Dependencies ====================== //
 var express = require('express');
 
 var router = express.Router();
 
-//import the model (burger.js) to use its database functions 
+// Import the model (burger.js) to use its database functions 
 var db = require('../models')
 
-// routes =========================================================
+// ====================== Routes ========================= // 
 
-//index redirect 
+// Index redirect 
 router.get('/', function(req, res) {
     res.redirect('/alchemy')
 });
 
-//index page (render all alchemy to DOM)
+// Index page (render all alchemy to DOM)
 router.get('/alchemy', function(req, res) {
     console.log('in /alchemy')
     db.alchemy.findAll()
@@ -27,20 +28,25 @@ router.get('/alchemy', function(req, res) {
             return res.json(500);
 
         })
-        // Original Attempt #1
-        // db.alchemy.find({sign:1:req.body.sign:1}).then(function(results) {
-        //     console.log(results)
 
-    //     let Matches = {
-    //         Matches: results
-    //     }
+
+    // =============================== Test ========================= //
+    // Original Attempt #1
+    // db.alchemy.find({sign:1:req.body.sign:1}).then(function(results) {
+    //     console.log(results)
+
+    // let Matches = {
+    //      Matches: results
+    //          }
     //     res.render("matches_display", Matches)
     // });
 
     // Possible solution #1
-
     // searchParams
 
+    // =============================================================== //
+
+    // Usersign1 Matches 
     if (searchParams.id = usersign1)
         models.user.findAll({
             where: { match1, match2, match3, match4, match5 }
@@ -234,16 +240,6 @@ router.get('/alchemy', function(req, res) {
         });
 
 
-    // Page 1 needs to show the user their:
-    //name 
-    //age
-    //gender
-    //sign 
-    //photo
-    //Page 2 the app needs to display the matches to the users sign 
-    //if user = aries 
-
-
     const Op = Sequelize.Op;
     db.alchemy.findAll({
         where: {
@@ -296,5 +292,7 @@ router.post('/alchemy/create', function(req, res) {
             return res.json(500);
         });
 });
+
+
 
 module.exports = router;

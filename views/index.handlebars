@@ -1,30 +1,46 @@
-
+    
+<div id="container">
+    <img src="/assets/img/zodiac signs/aquarius.jpg">
+    <img src="/assets/img/zodiac signs/aries.jpg">
+    <img src="/assets/img/zodiac signs/cancer.jpg">
+    <img src="/assets/img/zodiac signs/capricorn.jpg">
+    <img src="/assets/img/zodiac signs/gemini.jpg">
+    <img src="/assets/img/zodiac signs/leo.jpg">
+    <img src="/assets/img/zodiac signs/libra.jpg">
+    <img src="/assets/img/zodiac signs/pieces.jpg">
+    <img src="/assets/img/zodiac signs/sagittarius.jpg">
+    <img src="/assets/img/zodiac signs/scorpio.jpg">
+    <img src="/assets/img/zodiac signs/taurus.jpg">
+    <img src="/assets/img/zodiac signs/virgo.jpg">
+</div>
 
 {{#each person}}
+
+<form id="form-user">
 <h1>Name</h1>
-<form>
 	<input type='text' name='{{name}}'  value='{{name}}'/>
-</form>
+
 <h1>Gender</h1>
-<form>
+
 	<input type='text' name='{{name}}'  value='{{name}}'/>
-</form>
+
 <h1>Age</h1>
-<form>
+
 	<input type='text' name='{{name}}'  value='{{name}}'/>
-</form>
+
 <h1>Sign</h1>
-<form>
+
 	<input type='text' name='{{name}}'  value='{{name}}'/>
-</form>
+
 <h1>Photo</h1>
-<form>
-	<input type='text' name='{{name}}'  value='{{name}}'/>
+	<input type='text' name='{{name}}'  value='{{name}}'/><br/>
+  <!-- Trigger/Open The Modal -->
+<button type="submit" id="myBtn">Submit</button>
 </form>
 {{/each}}
 
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Submit</button>
+
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -40,24 +56,19 @@
 
 <script>
 var modal = document.getElementById('myModal');
-
 var btn = document.getElementById("myBtn");
-
 var span = document.getElementsByClassName("close")[0]; 
-btn.onclick = function() {
+btn.addEventListener("click",function(e){
+    console.log(e)
     modal.style.display = "block";
-}
-
-
+    e.preventDefault();
+})
 span.onclick = function() {
     modal.style.display = "none";
 }
-
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
 </script>
-
-	
