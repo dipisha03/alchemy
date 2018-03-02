@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
 
-    var Signs = sequelize.define("Signs", {
+    var Signs = sequelize.define("signs", {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -117,12 +117,12 @@ module.exports = function(sequelize, DataTypes) {
 
     });
 
-    Signs.associate = function(models) {
+    signs.associate = function(models) {
 
         models.User.hasMany(models.User);
 
     };
 
-    return Signs;
+    return signs;
 
 };

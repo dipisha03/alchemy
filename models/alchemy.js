@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         gender: {
-            type: DataTypes.VARCHAR(7),
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
@@ -39,13 +39,13 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         // Can be NVARCHAR for DateTypes if TEXT doesnt work
-        photo: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
+        // photo: {
+        //     type: DataTypes.TEXT,
+        //     allowNull: false,
+        //     validate: {
+        //         len: [1]
+        //     }
+        // },
 
         complete: {
             type: DataTypes.BOOLEAN,
@@ -58,7 +58,7 @@ module.exports = function(sequelize, DataTypes) {
     User.associate = function(models) {
 
         // We want the user to be matched to the compatible signs
-        models.User.hasMany(models.Signs);
+        models.User.hasMany(models.signs);
 
     };
 

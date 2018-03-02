@@ -46,23 +46,25 @@ router.get('/alchemy', function(req, res) {
 
     // =============================================================== //
 
-    // Usersign1 Matches 
+    // Usersign1 = aries matches 
     if (searchParams.id = usersign1)
         models.user.findAll({
-            where: { match1, match2, match3, match4, match5 }
+            where: { match1, match2, match3, match4, match5, match6 }
         }).then(function(results) {
-            console.log(match1, match2, match3, match4, match5)
+            console.log(match1, match2, match3, match4, match5, match6)
 
             let Matches = {
                 Matches: match1,
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
+                match6
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign2 = leo matches
     if (searchParams.id = usersign2)
         models.user.findAll({
             where: { match1, match2, match3, match4, match5 }
@@ -79,38 +81,43 @@ router.get('/alchemy', function(req, res) {
             res.render("matches_display", Matches)
         });
 
+    // Usersign3 = sagittarius matches
     if (searchParams.id = usersign3)
         models.user.findAll({
-            where: { match1, match2, match3, match4, match5 }
+            where: { match1, match2, match3, match4, match5, match6 }
         }).then(function(results) {
-            console.log(match1, match2, match3, match4, match5)
+            console.log(match1, match2, match3, match4, match5, match6)
 
             let Matches = {
                 Matches: match1,
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
+                match6
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign4 = taurus matches
     if (searchParams.id = usersign4)
         models.user.findAll({
-            where: { match1, match2, match3, match4, match5 }
+            where: { match1, match2, match3, match4, match5, match6 }
         }).then(function(results) {
-            console.log(match1, match2, match3, match4, match5)
+            console.log(match1, match2, match3, match4, match5, match6)
 
             let Matches = {
                 Matches: match1,
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
+                match6
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign5 = virgo matches
     if (searchParams.id = usersign5)
         models.user.findAll({
             where: { match1, match2, match3, match4, match5 }
@@ -122,27 +129,30 @@ router.get('/alchemy', function(req, res) {
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign6 = capricorn matches
     if (searchParams.id = usersign6)
         models.user.findAll({
-            where: { match1, match2, match3, match4, match5 }
+            where: { match1, match2, match3, match4, match5, match6 }
         }).then(function(results) {
-            console.log(match1, match2, match3, match4, match5)
+            console.log(match1, match2, match3, match4, match5, match6)
 
             let Matches = {
                 Matches: match1,
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
+                match6
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign7 = gemini matches
     if (searchParams.id = usersign7)
         models.user.findAll({
             where: { match1, match2, match3, match4, match5 }
@@ -154,11 +164,12 @@ router.get('/alchemy', function(req, res) {
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign8 = libra matches
     if (searchParams.id = usersign8)
         models.user.findAll({
             where: { match1, match2, match3, match4, match5 }
@@ -175,54 +186,61 @@ router.get('/alchemy', function(req, res) {
             res.render("matches_display", Matches)
         });
 
+    // Usersign9 = aquarius matches
     if (searchParams.id = usersign9)
         models.user.findAll({
-            where: { match1, match2, match3, match4, match5 }
+            where: { match1, match2, match3, match4, match5, match6 }
         }).then(function(results) {
-            console.log(match1, match2, match3, match4, match5)
+            console.log(match1, match2, match3, match4, match5, match6)
 
             let Matches = {
                 Matches: match1,
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
+                match6
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign10 = cancer matches
     if (searchParams.id = usersign10)
         models.user.findAll({
-            where: { match1, match2, match3, match4, match5 }
+            where: { match1, match2, match3, match4, match5, match6 }
         }).then(function(results) {
-            console.log(match1, match2, match3, match4, match5)
+            console.log(match1, match2, match3, match4, match5, match6)
 
             let Matches = {
                 Matches: match1,
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
+                match6
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign11 = scorpio matches
     if (searchParams.id = usersign11)
         models.user.findAll({
-            where: { match1, match2, match3, match4, match5 }
+            where: { match1, match2, match3, match4, match5, match6 }
         }).then(function(results) {
-            console.log(match1, match2, match3, match4, match5)
+            console.log(match1, match2, match3, match4, match5, match6)
 
             let Matches = {
                 Matches: match1,
                 match2,
                 match3,
                 match4,
-                match5
+                match5,
+                match6
             }
             res.render("matches_display", Matches)
         });
 
+    // Usersign12 = pisces matches
     if (searchParams.id = usersign12)
         models.user.findAll({
             where: { match1, match2, match3, match4, match5 }
