@@ -1,9 +1,9 @@
 {
     "development": {
         "username": "root",
-        "password": "Aquajava!03",
+        "password": "",
         "database": "alchemy_db",
-        "host": "127.0.0.1",
+        "host": "localhost",
         "dialect": "mysql"
     },
     "production": {

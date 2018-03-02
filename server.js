@@ -27,11 +27,14 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 
-var router = require('./controllers/burgers_controller.js');
+// var router = require('./controllers/burgers_controller.js');
 //app.get("/", function(req, res) { res.json("check") });
-app.use('/', router);
-app.use("/update", router);
-app.use("/create", router);
+// app.use('/', router);
+// app.use("/update", router);
+// app.use("/create", router);
+
+var yasroutes = require("./controllers/yasroutes");
+app.use("/", yasroutes);
 
 // app.listen(PORT, function() {
 //     console.log("App now listening at localhost:" + PORT);
@@ -41,3 +44,5 @@ db.sequelize.sync().then(function() {
     app.listen(PORT);
     console.log("App now listening at localhost:" + PORT);
 });
+
+console.log("um what?")
