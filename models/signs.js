@@ -117,12 +117,12 @@ module.exports = function(sequelize, DataTypes) {
 
     });
 
-    signs.associate = function(models) {
+    Signs.associate = function(models) {
 
         models.User.hasMany(models.User);
 
     };
 
-    return signs;
+    return Signs;
 
 };

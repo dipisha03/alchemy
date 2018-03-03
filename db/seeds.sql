@@ -1,5 +1,6 @@
 
 INSERT INTO alchemy_table (id, username, gender, usersign1, match1, match2, match3, match4, match5, match6) values ("1", "john", "male", "aries", "aries", "leo", "sagittarius", "gemini", "libra", "aquarius");
+
 INSERT INTO alchemy_table (id, username, gender, usersign2, match1, match2, match3, match4, match5) values ("2", "sasha", "female", "leo", "aries", "leo", "sagittarius", "gemini", "libra");
 
 INSERT INTO alchemy_table (id, username, gender, usersign3, match1, match2, match3, match4, match5, match6) values ("3", "rachel", "female", "sagittarius","aries", "leo", "sagittarius", "gemini", "libra", "aquarius");

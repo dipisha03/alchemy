@@ -14,6 +14,26 @@
     <img src="/assets/img/zodiac signs/virgo.jpg">
 </div>
 
+ <form id="form-user"> 
+        
+      <!-- Text Area Input -->
+        <div class="row" align="center">
+
+      <!-- Burger Input Box -->
+        <div class="form-group col-md-12">
+            <label for="user-name" class="">Name</label>
+            <input class="form-control" columns="8" rows="4" id="user-name" name="name" text="text">
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+        <center>
+          <button id="submit-button" class="btn btn-danger">Submit</button>
+        </center>
+
+      </form>
+
+{{!-- 
 {{#each person}}
 
 <form id="form-user">
@@ -37,8 +57,7 @@
   <!-- Trigger/Open The Modal -->
 <button type="submit" id="myBtn">Submit</button>
 </form>
-{{/each}}
-
+{{/each}} --}}
 
 
 
@@ -55,6 +74,22 @@
   </div>
 
 <script>
+$("submit-button").on("click", function (e){
+    e.preventDefault();
+    //form validate before posting
+    var newUser = {
+        name: $("user-name").val().trim() 
+    }
+console.log(newUser)
+
+$.post("/create", newUser, function (res){
+    console.log(res)
+})
+})
+</script>
+
+
+{{!-- <script>
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0]; 
@@ -71,4 +106,4 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-</script>
+</script> --}}

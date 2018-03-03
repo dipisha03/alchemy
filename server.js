@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+app.use(bodyParser.json());
+
 // Handlebars
 var exphbs = require('express-handlebars');
 
@@ -27,16 +29,19 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 
-var router = require('./controllers/burgers_controller.js');
-//app.get("/", function(req, res) { res.json("check") });
-app.use('/', router);
-app.use("/update", router);
-app.use("/create", router);
+// var router = require('./controllers/alchemy_controllers.js');
+// //app.get("/", function(req, res) { res.json("check") });
+// app.use('/', router);
+// app.use("/update", router);
+// app.use("/create", router);
 
 // app.listen(PORT, function() {
 //     console.log("App now listening at localhost:" + PORT);
 // });
 
+var routes = require("./controllers/alchemy_controllers.js");
+app.use("/", routes);
+app.use("/create", routes);
 db.sequelize.sync().then(function() {
     app.listen(PORT);
     console.log("App now listening at localhost:" + PORT);
