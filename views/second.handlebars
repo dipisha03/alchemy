@@ -1,4 +1,32 @@
-<script>
-document.getElementsByTagName("body").style.backgroundImage="url('/assets/img/background.jpg')"
-</script>
+<div id="account">
+<div class="container" align="center" >
+	<div class="row">
+		<div class="col-sm-12 col-md-6 col-lg-6">
+			<div class="panel panel-default">
+		    <div class="panel-body">
+		    	<p>{{name}}</p>
+					<p>Your sign: {{sign}}</p>
+					<img src="{{image}}" id="profile">
+					<br>
+					<br>
 
+					<a href="/logout"><button class="btn btn-default">logout</button></a>
+				</div>
+		  </div>
+		</div>
+		<div class="col-sm-12 col-md-6 col-lg-6">
+			<div class="panel panel-default">
+		    <div class="panel-body">
+		    	<p>You are compatible with:</p>
+		    	{{#each matches}}
+						<li>{{this}}</li>
+					{{/each}}
+		    	{{!-- <p>{{}}</p>
+					<p>{{}}</p>
+					<img src="{{}}" id="profile"> --}}
+				</div>
+		  </div>
+		</div>
+	</div>
+</div>
+</div>

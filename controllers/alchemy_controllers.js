@@ -1,361 +1,185 @@
-// =================== Dependencies ====================== //
-var express = require('express');
+// ====================== Dependencies ======================== //
 
+// Import the models to use its database functions 
+var db = require('../models');
+// Initiate Express 
+var express = require("express");
+// Require passport 
+var passport = require('passport');
+// Define router
 var router = express.Router();
+// Require sequelize 
+var Sequelize = require('sequelize');
+var Op = Sequelize.Op;
 
-// Import the model (burger.js) to use its database functions 
-var db = require('../models')
+// ====================== HTML Routes ========================= // 
 
-// ====================== Routes ========================= // 
-
+// User authentication 
 router.get("/", function(req, res) {
-    res.render("index")
+    var hdblbrs = {
+        isLoggedIn: req.isAuthenticated()
+    }
+    res.render("index", hdblbrs)
 })
 
-router.post("/create", function(req, res) {
-        console.log(req.body);
-        res.json(req.body);
-    })
-    // router.get("/second", function(req, res) {
-    //     response.render("second")
-    // });
+router.get("/account", function(req, res) {
+    //var id = getCurrentuserId(req);
 
-// router.get("/", function(req, res) {
-//     response.render("index", {
-//         person: [
+    console.log("account")
+    var hdblbrs = {
+        isLoggedIn: req.isAuthenticated(),
+    }
+    if (req.isAuthenticated()) {
+        var id = req.session.passport.user
+        console.log(req.session.passport)
+        console.log(req.session)
+            // Find one by id 
 
-//             { name: '' },
+        //Console.log(id)
+        db.User.findById(id).then(user => {
+            console.log(user.dataValues)
+                // Get current user info 
+            hdblbrs["name"] = user.dataValues.name;
+            hdblbrs["sign"] = user.dataValues.sign;
+            hdblbrs["image"] = user.dataValues.image;
 
-//         ]
-//     });
+            // Get the matches for user sign
+            db.Signs.findOne({ where: { sign: hdblbrs.sign } }).then(sign => {
+                console.log(sign.dataValues.matches)
+                var matchArr = sign.dataValues.matches
+                hdblbrs["matches"] = matchArr.split(",");
+                console.log("###", hdblbrs);
+                res.render("second", hdblbrs);
+                var choices = []
+                hdblbrs.matches.forEach(function(match) {
+                    var choice = { sign: match }
+                    console.log(choice)
+                    choices.push(choice)
+                })
+                db.User.findAll({
+                    where: {
+                        [Sequelize.Op.or]: choices
+                    }
+                }).then(user => {
+                    console.log(user.dataValues)
+                })
+            })
 
-// });
+        })
 
-// router.get("/", function(req, res) {
-//     response.render("index", {
-//         person: [
+    } else {
+        res.render("index", hdblbrs);
+    }
 
-//             { age: '' },
+})
 
-//         ]
-//     });
+// ======================== API Routes ======================= // 
 
-// });
+// Process the signup form ===================================
+//============================================================
 
-// router.get("/", function(req, res) {
-//     response.render("index", {
-//         person: [
+router.post('/signup', function(req, res, next) {
+    passport.authenticate('local-signup', function(err, user, info) {
+        if (err) {
+            //console.log("passport err", err)
+            return next(err); // will generate a 500 error
+        }
+        // Generate a JSON response reflecting authentication status
+        if (!user) {
+            return res.send({ success: false, message: 'authentication failed' });
+        }
 
-//             { sign: '' }
+        // ***********************************************************************
+        // "Note that when using a custom callback, it becomes the application's
+        // responsibility to establish a session (by calling req.login()) and send
+        // a response."
+        // Source: http://passportjs.org/docs
+        // ***********************************************************************
 
-//         ]
-//     });
+        req.login(user, loginErr => {
+            if (loginErr) {
+                //console.log("loginerr", loginerr)
+                return next(loginErr);
+            }
 
-// });
+            //console.log('redirecting....');
+            var status = {
+                code: 200,
+                isLoggedIn: true,
+                userId: user.dataValues.id,
+                username: user.dataValues.name,
+                userSign: user.dataValues.sign
+            }
+            res.json(status);
 
-// router.get('/test', function(
-//     req, res) {
-//     response.json('test worked')
-// });
-
-// // Index redirect 
-// router.get('/', function(req, res) {
-//     res.redirect('/alchemy')
-// });
-
-// // Index page (render all alchemy to DOM)
-// router.get('/alchemy', function(req, res) {
-//     console.log('in /alchemy')
-//     db.alchemy.findAll()
-//         .then(function(dbAlchemy) {
-//             console.log('###########', dbAlchemy);
-//             //into the main index, updating the page
-//             var hbsObject = { alchemy: dbAlchemy };
-//             return res.render('index', hbsObject);
-//         })
-//         .catch(function(err) {
-//             console.log('get all errors', err);
-//             return res.json(500);
-
-//         })
-
-
-//     // =============================== Test ========================= //
-//     // Original Attempt #1
-//     // db.alchemy.find({sign:1:req.body.sign:1}).then(function(results) {
-//     //     console.log(results)
-
-//     // let Matches = {
-//     //      Matches: results
-//     //          }
-//     //     res.render("matches_display", Matches)
-//     // });
-
-//     // Possible solution #1
-//     // searchParams
-
-//     // =============================================================== //
-
-//     // Usersign1 = aries matches 
-//     if (searchParams.id = usersign1)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5, match6 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5, match6)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//                 match6
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign2 = leo matches
-//     if (searchParams.id = usersign2)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign3 = sagittarius matches
-//     if (searchParams.id = usersign3)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5, match6 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5, match6)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//                 match6
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign4 = taurus matches
-//     if (searchParams.id = usersign4)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5, match6 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5, match6)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//                 match6
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign5 = virgo matches
-//     if (searchParams.id = usersign5)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign6 = capricorn matches
-//     if (searchParams.id = usersign6)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5, match6 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5, match6)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//                 match6
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign7 = gemini matches
-//     if (searchParams.id = usersign7)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign8 = libra matches
-//     if (searchParams.id = usersign8)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign9 = aquarius matches
-//     if (searchParams.id = usersign9)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5, match6 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5, match6)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//                 match6
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign10 = cancer matches
-//     if (searchParams.id = usersign10)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5, match6 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5, match6)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//                 match6
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign11 = scorpio matches
-//     if (searchParams.id = usersign11)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5, match6 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5, match6)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5,
-//                 match6
-//             }
-//             res.render("matches_display", Matches)
-//         });
-
-//     // Usersign12 = pisces matches
-//     if (searchParams.id = usersign12)
-//         models.user.findAll({
-//             where: { match1, match2, match3, match4, match5 }
-//         }).then(function(results) {
-//             console.log(match1, match2, match3, match4, match5)
-
-//             let Matches = {
-//                 Matches: match1,
-//                 match2,
-//                 match3,
-//                 match4,
-//                 match5
-//             }
-//             res.render("matches_display", Matches)
-//         });
+        });
+    })(req, res, next);
+});
 
 
-//     const Op = Sequelize.Op;
-//     db.alchemy.findAll({
-//         where: {
-//             sign: user
-//         }
-//     }).then(function(results) {
-//         console.log(results)
+router.post('/login', function(req, res, next) {
 
-//         let Matches = {
-//             Matches: results
-//         }
-//         res.render("matches_display", Matches)
-//     });
+    passport.authenticate('local-login', function(err, user, info) {
+        if (err) {
+            //console.log("passport err", err)
+            return next(err); // will generate a 500 error
+        }
+        // Generate a JSON response reflecting authentication status
+        if (!user) {
+            return res.send({ success: false, message: 'authentication failed' });
+        }
 
-// });
+        // ***********************************************************************
+        // "Note that when using a custom callback, it becomes the application's
+        // responsibility to establish a session (by calling req.login()) and send
+        // a response."
+        // Source: http://passportjs.org/docs
+        // ***********************************************************************
 
-// db.alchemy.findAll({
+        req.login(user, loginErr => {
+            if (loginErr) {
+                //console.log("loginerr", loginErr)
+                return next(loginErr);
+            }
+            //var userId = user.dataValues.id;
+            //console.log('redirecting....')
+            var userName = user.dataValues.name;
+            var status = {
+                code: 200,
+                isLoggedIn: true,
+                userId: user.dataValues.id,
+                username: user.dataValues.name,
+                userSign: user.dataValues.sign
+            }
+            res.json(status);
 
-// }).then(function(results) {
-//     console.log(results)
+        });
+    })(req, res, next);
+});
 
-//     let Matches = {
-//         Matches: results
-//     }
-//     res.render("matches_display", Matches)
-// });
+// Logout of user account
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
-// // Put a name in the Database
-// router.post('/alchemy/create', function(req, res) {
-//     db.alchemy.create({
-//             username: req.body.username,
-//             gender: req.body.gender,
-//             sign: req.body.sign,
-//             // age: req.body.age
-//         })
-//         // pass the result of our call 
-//         .then(function(dbAlchemy) {
-//             // log the result to our bash window
-//             console.log(dbAlchemy);
-//             // redirect
-//             res.redirect("/");
-//         })
-//         .catch(function(err) {
-//             console.log('create err', err);
-//             return res.json(500);
-//         });
-// });
+function getCurrentuserId(req) {
+    var userId;
+    if (req.isAuthenticated()) {
+        userId = req.session.passport.user;
+    } else {
+        userId = false
+    }
+    return userId
+}
 
+//Edge casing for wild card
+router.get("*", function(req, res, next) {
+    if (req.url.indexOf('/api') == 0) return next();
+    if (req.url.indexOf('/assets') == 0) return next();
+    if (req.url.indexOf('/css') == 0) return next();
+    res.render("index");
+});
 
-
+// Export Router
 module.exports = router;

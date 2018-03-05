@@ -1,5 +1,91 @@
-    
-<div id="container">
+
+<div class="home">
+  <div id="container">
+  {{#if isLoggedIn}}
+    <a href="/logout" id="logoutBtn">
+      <button class="btn btn-default">Logout</button>
+    </a>
+    {{/if}}
+    {{#unless isLoggedIn}}
+
+    <div id="welcomeWrap">
+      <button id="signup" class="userAcnt btn btn-primary">Sign up</button>
+      <button id="signin" class="userAcnt btn btn-secondary">Sign in</button>
+    </div>
+    <form id="signinForm" class="hide">
+      <h3 id="error2"></h3>
+      <div class="" align="center">
+        <div class="form-group">
+            <label for="email" class="">email</label>
+            <input class="form-control" id="email" name="name" type="email" required="">
+            <label for="psw" class="">password</label>
+            <input class="form-control" id="psw" name="password" type="password" required="">
+        </div>
+      </div>
+      <center>
+        <button id="loginBtn" class="btn btn-primary">Log in</button>
+      </center>
+    </form>
+    <form id="newUserForm" class="hide">
+      <!-- Text Area Input -->
+      <h3 id="error"></h3>
+      <div class="" align="center">
+        <div class="form-group">
+            <label for="user-name" class="">Name</label>
+            <input class="form-control" id="user-name" name="name" type="text" required="">
+        </div>
+        <div class="form-group">
+            <label for="user-name" class="">Email</label>
+             <p id="email-msg"></p>
+            <input class="form-control" id="user-email" name="email" tupe="email" required="">
+        </div>
+        <div class="form-group">
+            <label for="user-image" class="">Image</label>
+            <p id="img-msg"></p>
+            <input class="form-control" id="user-image" name="name" type="url" required="">
+        </div>
+         <div class="form-group">
+            <label for="user-sign">Sign</label>
+            <select class="form-control" id="user-sign" required="" name="sign">
+              <option></option>
+              <option>Aries</option>
+              <option>Leo</option>
+              <option>Sagittarius</option>
+              <option>Taurus</option>
+              <option>Virgo</option>
+              <option>Capricorn</option>
+              <option>Gemini</option>
+              <option>Libra</option>
+              <option>Aquarius</option>
+              <option>Cancer</option>
+              <option>Scorpio</option>
+              <option>Pisces</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="user-preference">Preference:</label>
+          <select class="form-control" id="user-preference" required="" name="Preference">
+            <option></option>
+            <option>Female</option>
+            <option>Male</option>
+            <option>Both</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="user-password" class="">Password</label>
+            <input class="form-control" id="user-password" name="Password" type="password" required="">
+            <label for="confirm-pw" class="">Confirm Password <span id='password-message'></span></label>
+            <input class="form-control" id="confirm-pw" name="cpw" type="password" required="">
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <center>
+        <button id="submit-button" class="btn btn-primary disabled" disabled="">Sign Up</button>
+      </center>
+    </form>  
+
+  {{/unless}}
+
     <img src="/assets/img/zodiac signs/aquarius.jpg">
     <img src="/assets/img/zodiac signs/aries.jpg">
     <img src="/assets/img/zodiac signs/cancer.jpg">
@@ -7,103 +93,181 @@
     <img src="/assets/img/zodiac signs/gemini.jpg">
     <img src="/assets/img/zodiac signs/leo.jpg">
     <img src="/assets/img/zodiac signs/libra.jpg">
-    <img src="/assets/img/zodiac signs/pieces.jpg">
+    <img src="/assets/img/zodiac signs/pisces.jpg">
     <img src="/assets/img/zodiac signs/sagittarius.jpg">
     <img src="/assets/img/zodiac signs/scorpio.jpg">
     <img src="/assets/img/zodiac signs/taurus.jpg">
     <img src="/assets/img/zodiac signs/virgo.jpg">
+  </div>
 </div>
 
- <form id="form-user"> 
-        
-      <!-- Text Area Input -->
-        <div class="row" align="center">
+  <!-- The Modal -->
+  <div id="welocomeModal" class="modal" role="dialog">
 
-      <!-- Burger Input Box -->
-        <div class="form-group col-md-12">
-            <label for="user-name" class="">Name</label>
-            <input class="form-control" columns="8" rows="4" id="user-name" name="name" text="text">
-        </div>
-      </div>
+    <!-- Modal content -->
+    <div class="modal-content" align="center">
+      <span class="close">&times;</span>
+      <h3>Hi <span id="loggedInName"></span></h3>
+      <p>Welcome to Alchemy!!</p>
 
-      <!-- Submit Button -->
-        <center>
-          <button id="submit-button" class="btn btn-danger">Submit</button>
-        </center>
-
-      </form>
-
-{{!-- 
-{{#each person}}
-
-<form id="form-user">
-<h1>Name</h1>
-	<input type='text' name='{{name}}'  value='{{name}}'/>
-
-<h1>Gender</h1>
-
-	<input type='text' name='{{name}}'  value='{{name}}'/>
-
-<h1>Age</h1>
-
-	<input type='text' name='{{name}}'  value='{{name}}'/>
-
-<h1>Sign</h1>
-
-	<input type='text' name='{{name}}'  value='{{name}}'/>
-
-<h1>Photo</h1>
-	<input type='text' name='{{name}}'  value='{{name}}'/><br/>
-  <!-- Trigger/Open The Modal -->
-<button type="submit" id="myBtn">Submit</button>
-</form>
-{{/each}} --}}
-
-
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Welcome to Alchemy!!</p>
-    <!-- <button id="myBtn">Continue</button> -->
-    <a href="/second"><button>Continue</button></a>
-
+      <!-- <button id="myBtn">Continue</button> -->
+      <button id="continue">Continue</button>
+      <a href="/logout"><button id="continue">logout</button></a>
   </div>
 
 <script>
-$("submit-button").on("click", function (e){
+
+$("#signup").on("click", function(){
+  $("#welcomeWrap, #userForm").addClass("hide");
+  $("#newUserForm").removeClass("hide");
+})
+
+$("#signin").on("click", function(){
+  $("#welcomeWrap, #newUserForm").addClass("hide");
+  $("#signinForm").removeClass("hide");
+})
+
+$("#submit-button").on("click", function (e){
+  $("#submit-button").text("Loading.....")
     e.preventDefault();
     //form validate before posting
     var newUser = {
-        name: $("user-name").val().trim() 
+      name:  $("#user-name").val().trim(),
+      email: $("#user-email").val().trim(),
+      image: $("#user-image").val().trim(),
+      sign:  $("#user-sign").val().trim(),
+      preference: $("#user-preference").val().trim(),
+      password:   $("#user-password").val().trim(),
     }
-console.log(newUser)
+  console.log(newUser)
 
-$.post("/create", newUser, function (res){
-    console.log(res)
+  $.post("/signup", newUser, function (res){
+      console.log(res)
+      // var status ={
+      //   code: 200,
+      //   isLoggedIn: true,
+      //   userid: userId
+      // }
+      if(res.code === 200 && res.isLoggedIn === true){
+        $("#error").text("")
+        $("#user-name").val("")
+        $("#user-email").val("")
+        $("#user-image").val("")
+        $("#user-sign").val("")
+        $("#user-preference").val("")
+        $("#user-password").val("")
+        $("#confirm-pw").val("")
+        $("#submit-button").text("Sign Up");
+        $("#email-msg").text("");
+        $("#img-msg").text("");
+        $('#password-message').text("");
+
+        $("#newUserForm").addClass("hide");
+        // $(".modal-backdrop .in").css("display", "none");
+        $("#loggedInName").text(res.username);
+        $("#welocomeModal").modal("show");
+      }else{
+        $("#user-name").val("")
+        $("#user-email").val("")
+        $("#user-image").val("")
+        $("#user-sign").val("")
+        $("#user-preference").val("")
+        $("#user-password").val("")
+        $("#confirm-pw").val("")
+        $("#submit-button").text("Sign Up");
+        $("#email-msg").text("");
+        $("#img-msg").text("");
+        $('#password-message').text("");
+        $("#error").text("Something went wrong, please try again!", res.message).css("color", "red");
+      }
+  });
 })
+  // send a post for /login
+  $("#loginBtn").on("click", function(e){
+    $("#submit-button").text("Loading.....")
+    e.preventDefault();
+    var user = {
+      email: $("#email").val().trim(),
+      password: $("#psw").val().trim()
+    }
+    $.post("/login", user, function(res){
+      console.log(res)
+      if(res.code === 200 && res.isLoggedIn === true){
+        $("#error2").text("")
+        $("#email").val("")
+        $("#psw").val("")
+        $("#submit-button").text("Log in")
+        $("#signinForm").addClass("hide")
+        $("#logoutBtn").css("display", "block")
+
+         $("#signinForm").addClass("hide");
+        // $(".modal-backdrop .in").css("display", "none");
+        $("#loggedInName").text(res.username);
+        $("#welocomeModal").modal("show");
+      }else{
+        $("#logoutBtn").css("display", "none")
+        $("#signinForm").removeClass("hide")
+        $("#email").val("")
+        $("#psw").val("")
+        $("#submit-button").text("Log in")
+        $("#error2").text("Something went wrong, please try again!", res.message).css("color", "red");
+      }
+      
+    })
+  })
+
+  $("#continue").on("click", function(){
+    window.location.href = "/account";
+  })
+
+/////////// form validation ////////////////////////
+
+// confirm if password is the same in both fields
+$('#user-password, #confirm-pw').on('keyup', function () {
+    if ($('#user-password').val() == $('#confirm-pw').val()) {
+        $('#password-message').html('√').css('color', 'green');
+        $('#submit-button').removeAttr('disabled');
+        $('#submit-button').removeClass('disabled')
+  } else 
+      $('#password-message').html('X').css('color', 'red');
+      $('#submit-button').attr("disabled");
+      $('#submit-button').removeClass('disabled');
+});
+
+
+//validate image is a url
+$("#user-image").on('keyup', function () {
+  var userImage = $("#user-image").val().trim()
+  validURL(userImage)
 })
+
+function validURL(str) {
+  var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+  if(!regex .test(str)) {
+    //alert("Please enter valid URL.");
+    $("#img-msg").text("Please enter valid image URL.").css('color', 'red');
+    return false;
+  } else {
+    $("#img-msg").text("");
+    return true;
+  }
+}
+
+// validate email is a email
+$("#user-email").on('keyup', function () {
+  var userEmail = $("#user-email").val().trim()
+  validateEmail(userEmail)
+})
+
+function validateEmail(str){
+  var regex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if(!regex .test(str)){
+    $("#email-msg").text("Please enter valid email.").css('color', 'red');
+    return false
+  }else{
+    $("#email-msg").text("");
+    return true
+  }
+}
 </script>
 
-
-{{!-- <script>
-var modal = document.getElementById('myModal');
-var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0]; 
-btn.addEventListener("click",function(e){
-    console.log(e)
-    modal.style.display = "block";
-    e.preventDefault();
-})
-span.onclick = function() {
-    modal.style.display = "none";
-}
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script> --}}

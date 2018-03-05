@@ -1,45 +1,48 @@
-var express = require('express');
-var router = express.Router();
+// // ====================== Dependencies ======================== //
 
-router.get("/second", function(req, res) {
-    response.render("second")
-});
+// var express = require('express');
+// // Define Router 
+// var router = express.Router();
 
-router.get("/", function(req, res) {
-    response.render("index", {
-        person: [
+// router.get("/second", function(req, res) {
+//     response.render("second")
+// });
 
-            { name: '' },
+// router.get("/", function(req, res) {
+//     response.render("index", {
+//         person: [
 
-        ]
-    });
+//             { name: '' },
 
-});
+//         ]
+//     });
 
-router.get("/", function(req, res) {
-    response.render("index", {
-        person: [
+// });
 
-            { age: '' },
+// router.get("/", function(req, res) {
+//     response.render("index", {
+//         person: [
 
-        ]
-    });
+//             { age: '' },
 
-});
+//         ]
+//     });
 
-router.get("/", function(req, res) {
-    response.render("index", {
-        person: [
+// });
 
-            { sign: '' }
+// router.get("/", function(req, res) {
+//     response.render("index", {
+//         person: [
 
-        ]
-    });
+//             { sign: '' }
 
-});
+//         ]
+//     });
 
-router.get('/test', function(
-    req, res) {
-    response.json('test worked')
-});
-module.exports = router;
+// });
+
+// router.get('/test', function(
+//     req, res) {
+//     response.json('test worked')
+// });
+// module.exports = router;

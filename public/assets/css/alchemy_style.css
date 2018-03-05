@@ -1,26 +1,43 @@
-/*html {*/
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: transparent;
+    min-height: 100vh;
+}
 
+#welocomeModal .modal-content {
+    z-index: 99999 !important;
+}
 
-/*background-image: url("/assets/img/Zodiac Backgrounds/bgimage.jpg");*/
+.modal-backdrop {
+    display: none;
+    position: relative;
+}
 
-*/
-/*-webkit-background-size: cover;*/
+.modal-backdrop .in {
+    z-index: 0 !important;
+}
 
-*/
-/*-moz-background-size: cover;*/
+#welcomeWrap,
+#newUserForm,
+#signinForm,
+#logoutBtn {
+    z-index: 9;
+    position: relative;
+}
 
-*/
-/*-o-background-size: cover;*/
-
-
-/*background-size: cover;*/
-
-
-/*}*/
+#newUserForm,
+#signinForm,
+#logoutBtn {
+    width: 30%;
+    float: left;
+}
 
 #container {
     position: relative;
-    height: 963px;
+    height: 100%;
     width: 100%;
 }
 
@@ -29,7 +46,11 @@
     width: 100%;
     left: 0px;
     top: 0px;
+    height: 100vh;
 }
+
+
+/* Dyanamically displays zodiac icons one afer the other on page 1 */
 
 @-webkit-keyframes imgFade {
     0% {
@@ -206,14 +227,6 @@
     animation-delay: 0s;
 }
 
-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: transparent;
-}
-
 h1 {
     color: white;
 }
@@ -256,6 +269,12 @@ h1 {
     /* Could be more or less, depending on screen size */
 }
 
+#account {
+    height: 100vh;
+    background: url(../img/background.jpg) no-repeat center;
+    background-size: cover;
+}
+
 
 /* The Close Button */
 
@@ -271,4 +290,10 @@ h1 {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#profile {
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
 }
