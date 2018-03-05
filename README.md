@@ -19,6 +19,7 @@ Alchemy is a full stack dating application created to find the perfect match thr
 Technologies used: HTML | CSS | JavaScript | Node | Express | Handlebars | Sequelize 
 
 Unique methods used: @keyframes imgFade | Regex pattern matching | Passport.js | CRUD | MVC 
+
 Heroku: https://alchemy-dating-app.herokuapp.com/
 
 Presentation: https://www.emaze.com/@AOLLWCWCL/creativity
