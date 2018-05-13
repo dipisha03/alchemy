@@ -49,9 +49,6 @@ body {
     height: 100vh;
 }
 
-
-/* Dyanamically displays zodiac icons one afer the other on page 1 */
-
 @-webkit-keyframes imgFade {
     0% {
         opacity: 1;

@@ -16,12 +16,12 @@ Alchemy is a full stack dating application created to find the perfect match thr
 
 ![Alt text](https://raw.githubusercontent.com/dipisha03/alchemy/master/public/assets/img/second.png "Second")
 
-Technologies used: HTML | CSS | JavaScript | Node | Express | Handlebars | Sequelize 
+<b>Technologies used:</b> HTML5 | CSS3 | JavaScript | Node | Express | Handlebars | Sequelize 
 
-Unique methods used: @keyframes imgFade | Regex pattern matching | Passport.js | CRUD | MVC 
+<b>Unique methods used:</b> @keyframes imgFade | Regex pattern matching | Passport.js | CRUD | MVC 
 
-Heroku: https://alchemy-dating-app.herokuapp.com/
+<b>Heroku:</b> https://alchemy-dating-app.herokuapp.com/
 
-Presentation: https://www.emaze.com/@AOLLWCWCL/creativity
+<b>Presentation:</b> https://www.emaze.com/@AOLLWCWCL/creativity
 
 
